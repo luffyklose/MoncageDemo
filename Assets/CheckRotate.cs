@@ -21,8 +21,8 @@ public class CheckRotate : MonoBehaviour
     {
         //x = GetInspectorRotationValueMethod(mainCamera);
         //Debug.Log(x);
-        
-        Vector3 CameraVector3 = transform.localEulerAngles;
+
+        Vector3 CameraVector3 = mainCamera.transform.localEulerAngles;
         while (CameraVector3.x > 180.0f)
         {
             CameraVector3.x -= 360.0f;
@@ -40,7 +40,8 @@ public class CheckRotate : MonoBehaviour
             CameraVector3.y -= 360.0f;
         }
         
-        if ((CameraVector3 - triggerRotate).sqrMagnitude <= 5)
+        Debug.Log($"{CameraVector3}");
+        if ((CameraVector3 - triggerRotate).sqrMagnitude <= 10)
         {
             time += Time.deltaTime;
         }
@@ -50,8 +51,8 @@ public class CheckRotate : MonoBehaviour
         }
         if (time >= 1)
         {
-            Debug.Log("Trigger");
-            this.GetComponent<Animator>().SetBool("Play", true);
+            Debug.Log("Run");
+            this.GetComponent<Animator>().SetTrigger("Run");
         }
     }
     
